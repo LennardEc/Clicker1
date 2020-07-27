@@ -3,8 +3,6 @@ package com.example.clicker1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,13 +18,8 @@ import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
-import com.example.clicker1.ViewCountContract.*;
-
-
-//TODO Return Kontostand after leaving the Tab
 
 public class AdActivity extends AppCompatActivity implements RewardedVideoAdListener {
-    private ViewCountHelper dbHelper;
     private AdView topAdView;
     private RewardedVideoAd rewardedAd;
 
@@ -37,6 +30,8 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
     private int views;
     private String email;
 
+    private String productionAd = "ca-app-pub-3940256099942544/5224354917";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,20 +40,9 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
         Intent intent = getIntent();
         email = intent.getStringExtra(MainActivity.EMAIL);
 
-        //Create Database Connection
-        dbHelper = new ViewCountHelper(this);
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        String checkUserName = "Select * from " + ViewCountContract.ViewCount.TABLE_NAME + " where email = '" + email + "'";
-        Cursor res = db.rawQuery(checkUserName, null);
-
-        int cClicks = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_CLICKS);
-        int cViews = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_VIEWS);
-
-        for(res.moveToFirst(); !res.isAfterLast(); res.moveToNext()) {
-            clicks = res.getInt(cClicks);
-            views = res.getInt(cViews);
-        }
+        int[] result = HelperFunctions.loadUserValues(email, this);
+        clicks = result[0];
+        views = result[1];
 
 
         number = findViewById(R.id.textView);
@@ -66,8 +50,7 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
         backToMenue = findViewById(R.id.backToMenue);
         topAdView = findViewById(R.id.adView);
 
-        String text = "Kontostand: " + clicks;
-        number.setText(text);
+        number.setText(""+clicks);
 
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -83,7 +66,7 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
         rewardedAd = MobileAds.getRewardedVideoAdInstance(this);
         rewardedAd.setRewardedVideoAdListener(this);
 
-        rewardedAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().build());
+        rewardedAd.loadAd(productionAd, new AdRequest.Builder().build());
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +82,6 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
             public void onClick(View view) {
                 HelperFunctions.updateUser(email, AdActivity.this, clicks, views);
 
-                menueActivity.konto.setText(String.valueOf(clicks));
-
                 Intent intent = new Intent(AdActivity.this, menueActivity.class);
                 intent.putExtra(MainActivity.EMAIL, email);
                 startActivity(intent);
@@ -109,14 +90,12 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
     }
 
     private void updatedCounterText() {
-        String text = "Kontostand: " + clicks;
-        number.setText(text);
+        number.setText(""+clicks);
     }
 
     private void loadRewardedVideoAd() {
-        rewardedAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().build());
+        rewardedAd.loadAd(productionAd, new AdRequest.Builder().build());
     }
-
 
     @Override
     public void onRewardedVideoAdClosed() {
