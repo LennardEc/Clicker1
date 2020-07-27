@@ -1,19 +1,14 @@
 package com.example.clicker1;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class menueActivity extends AppCompatActivity {
-    ViewCountHelper dbHelper;
-
     private int clicks;
     private int views;
 
@@ -29,38 +24,13 @@ public class menueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menue);
 
-        //Get the Email from the Login Process
-        //The Email is also the Primary Key
         Intent intent = getIntent();
         email = intent.getStringExtra(MainActivity.EMAIL);
 
-        //Create a DBHelper to create a connection to the local Database
-        dbHelper = new ViewCountHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        //If the Query is null or has no entrys than
-        String checkUserName = "Select * from " + ViewCountContract.ViewCount.TABLE_NAME + " where email = '" + email + "'";
-        Cursor res = db.rawQuery(checkUserName, null);
-
-        int cEmail = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_EMAIL);
-        int cClicks = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_CLICKS);
-        int cViews = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_VIEWS);
-
-        //The getCount() is either 0 or 1, because the email is unique
-        if(res.getCount() == 1) {
-            // User already Exists -> Fetch Data
-            for(res.moveToFirst(); !res.isAfterLast(); res.moveToNext()) {
-                clicks = res.getInt(cClicks);
-                views = res.getInt(cViews);
-            }
-            Toast.makeText(this, "Clicks: " + clicks + "   " + "Views: " + views , Toast.LENGTH_SHORT).show();
-        }else {
-            //If the cursor size is Zero, no user exist
-            String newUser = "Insert into " + ViewCountContract.ViewCount.TABLE_NAME + "values('" + email + "', 0, 0)";
-            db.execSQL(newUser);
-            clicks = 0;
-            views = 0;
-        }
+        //Return an array with the size 2 including clicks at index 0 and views at index 1
+        int[] result = HelperFunctions.loadUserValues(email, this);
+        clicks = result[0];
+        views = result[1];
 
 
         button = findViewById(R.id.redirectToAd);
@@ -69,6 +39,8 @@ public class menueActivity extends AppCompatActivity {
 
         konto.setText(String.valueOf(clicks));
 
+
+        /* Return back to AdActivity */
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +50,7 @@ public class menueActivity extends AppCompatActivity {
             }
         });
 
+        /* Return to main Menu and trigger the onResume function to conduced the SignOut() process */
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

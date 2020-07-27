@@ -39,7 +39,6 @@ public class AgbActivity extends AppCompatActivity {
                 if(agb_check.isChecked()) {
                     HelperFunctions.createUser(email, AgbActivity.this);
 
-
                     Intent intent = new Intent(AgbActivity.this, AdActivity.class);
                     intent.putExtra(MainActivity.EMAIL, email);
                     startActivity(intent);
