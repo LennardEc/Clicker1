@@ -23,8 +23,8 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
     private AdView topAdView;
     private RewardedVideoAd rewardedAd;
 
-    private Button button, backToMenue;
-    private TextView number;
+    private Button videoAdButton, backToMenue;
+    private TextView clickDisplayTextView;
 
     private int clicks;
     private int views;
@@ -45,14 +45,13 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
         views = result[1];
 
         //Initialize all XML elements
-        number = findViewById(R.id.textView);
-        button = findViewById(R.id.button);
+        clickDisplayTextView = findViewById(R.id.clicksCounterDisplay);
+        videoAdButton = findViewById(R.id.videoAdButton);
         backToMenue = findViewById(R.id.backToMenue);
         topAdView = findViewById(R.id.adView);
 
         //Update number Textfield
-        number.setText(""+clicks);
-
+        updatedCounterText();
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -71,7 +70,7 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
 
 
         /* Load a rewarded Ad, if the video isn't buffered yet the button will not respond*/
-        button.setOnClickListener(new View.OnClickListener() {
+        videoAdButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(rewardedAd.isLoaded()) {
@@ -97,7 +96,7 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
 
     //Show the current Amounts of clicks
     private void updatedCounterText() {
-        number.setText(""+clicks);
+        clickDisplayTextView.setText(""+clicks);
     }
 
     //Load a rewarded Video Ad

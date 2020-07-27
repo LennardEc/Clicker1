@@ -7,7 +7,7 @@
     tools:context=".AdActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/videoAdButton"
         android:layout_width="200dp"
         android:layout_height="220dp"
         android:layout_marginStart="105dp"
@@ -40,7 +40,7 @@
         tools:ignore="MissingConstraints"></com.google.android.gms.ads.AdView>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/clicksCounterDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
@@ -48,7 +48,7 @@
         android:layout_marginEnd="166dp"
         android:layout_marginBottom="113dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/videoAdButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adView" />
