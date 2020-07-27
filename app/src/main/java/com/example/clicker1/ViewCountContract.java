@@ -11,5 +11,6 @@ public class ViewCountContract {
         public static final String COLUMN_NAME_CLICKS = "clicks";
         public static final String COLUMN_NAME_VIEWS = "views";
         public static final String COLUMN_NAME_EMAIL = "email";
+        public static final String COLUMN_NAME_AGB = "agb";
     }
 }

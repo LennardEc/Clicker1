@@ -97,14 +97,13 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
         backToMenue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-                String update = "Update " + ViewCount.TABLE_NAME + " set " + ViewCount.COLUMN_NAME_CLICKS + " = " + clicks +
-                        " , " + ViewCount.COLUMN_NAME_VIEWS + " = " + views;
-                db.execSQL(update);
+                HelperFunctions.updateUser(email, AdActivity.this, clicks, views);
 
                 menueActivity.konto.setText(String.valueOf(clicks));
-                finish();
+
+                Intent intent = new Intent(AdActivity.this, menueActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                startActivity(intent);
             }
         });
     }

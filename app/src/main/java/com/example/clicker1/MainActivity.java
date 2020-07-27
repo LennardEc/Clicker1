@@ -60,9 +60,11 @@ public class MainActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
         if (account != null) {
-            Intent intent = new Intent(MainActivity.this, menueActivity.class);
-            intent.putExtra(EMAIL, account.getEmail());
-            startActivity(intent);
+            if(HelperFunctions.userExists(account.getEmail(), this)) {
+                Intent intent = new Intent(MainActivity.this, AdActivity.class);
+                intent.putExtra(EMAIL, account.getEmail());
+                startActivity(intent);
+            }
         }
     }
 
@@ -89,9 +91,15 @@ public class MainActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-            Intent intent = new Intent(MainActivity.this, menueActivity.class);
-            intent.putExtra(EMAIL, account.getEmail());
-            startActivity(intent);
+            if(HelperFunctions.userExists(account.getEmail(), this)) {
+                Intent intent = new Intent(MainActivity.this, AdActivity.class);
+                intent.putExtra(EMAIL, account.getEmail());
+                startActivity(intent);
+            }else{
+                Intent intent = new Intent(MainActivity.this, AgbActivity.class);
+                intent.putExtra(EMAIL, account.getEmail());
+                startActivity(intent);
+            }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
