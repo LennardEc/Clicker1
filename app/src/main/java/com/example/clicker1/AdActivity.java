@@ -20,10 +20,8 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 
 public class AdActivity extends AppCompatActivity implements RewardedVideoAdListener {
-    private AdView topAdView;
     private RewardedVideoAd rewardedAd;
 
-    private Button videoAdButton, backToMenue;
     private TextView clickDisplayTextView;
 
     private int clicks;
@@ -46,9 +44,9 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
 
         //Initialize all XML elements
         clickDisplayTextView = findViewById(R.id.clicksCounterDisplay);
-        videoAdButton = findViewById(R.id.videoAdButton);
-        backToMenue = findViewById(R.id.backToMenue);
-        topAdView = findViewById(R.id.adView);
+        Button videoAdButton = findViewById(R.id.videoAdButton);
+        Button backToMenue = findViewById(R.id.backToMenue);
+        AdView topAdView = findViewById(R.id.adView);
 
         //Update number Textfield
         updatedCounterText();
@@ -96,7 +94,7 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
 
     //Show the current Amounts of clicks
     private void updatedCounterText() {
-        clickDisplayTextView.setText(""+clicks);
+        clickDisplayTextView.setText(String.valueOf(clicks));
     }
 
     //Load a rewarded Video Ad
