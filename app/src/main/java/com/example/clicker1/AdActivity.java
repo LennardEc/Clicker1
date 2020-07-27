@@ -44,12 +44,13 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
         clicks = result[0];
         views = result[1];
 
-
+        //Initialize all XML elements
         number = findViewById(R.id.textView);
         button = findViewById(R.id.button);
         backToMenue = findViewById(R.id.backToMenue);
         topAdView = findViewById(R.id.adView);
 
+        //Update number Textfield
         number.setText(""+clicks);
 
 
@@ -68,6 +69,8 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
 
         rewardedAd.loadAd(productionAd, new AdRequest.Builder().build());
 
+
+        /* Load a rewarded Ad, if the video isn't buffered yet the button will not respond*/
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +80,9 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
             }
         });
 
+
+        /*First Save the new amount of clicks and views
+          then the activity and change to menue*/
         backToMenue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,25 +95,29 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
         });
     }
 
+    //Show the current Amounts of clicks
     private void updatedCounterText() {
         number.setText(""+clicks);
     }
 
+    //Load a rewarded Video Ad
     private void loadRewardedVideoAd() {
         rewardedAd.loadAd(productionAd, new AdRequest.Builder().build());
     }
 
+    //Start Loading a new Ad after closing the previous, to reduce the time until the next Call
     @Override
     public void onRewardedVideoAdClosed() {
         loadRewardedVideoAd();
     }
 
+    /* After finishing the ad, clicks and views will be incremented,
+    *  and clicks will be displayed to the User, as well as an update call for the clicks TextView*/
     @Override
     public void onRewarded(RewardItem rewardItem) {
         this.clicks += 1;
         this.views += 1;
 
-        //TODO Optionaler Printout
         Toast.makeText(this, "" + this.clicks, Toast.LENGTH_SHORT).show();
         updatedCounterText();
     }
