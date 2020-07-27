@@ -14,9 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class AgbActivity extends AppCompatActivity {
     private String email;
 
-    private TextView agb_text;
     private CheckBox agb_check;
-    private Button proceed;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,12 +24,12 @@ public class AgbActivity extends AppCompatActivity {
         Intent intent = getIntent();
         email = intent.getStringExtra(MainActivity.EMAIL);
 
-        agb_text = findViewById(R.id.agb_textView);
+        TextView agb_text = findViewById(R.id.agb_textView);
         agb_text.setMovementMethod(new ScrollingMovementMethod());
 
         agb_check = findViewById(R.id.agb_checkbox);
 
-        proceed = findViewById(R.id.porceed);
+        Button proceed = findViewById(R.id.porceed);
 
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
