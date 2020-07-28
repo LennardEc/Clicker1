@@ -1,6 +1,7 @@
 package com.example.clicker1;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -36,6 +37,8 @@ public class PayOutActivity extends AppCompatActivity {
         bt20 = findViewById(R.id.button20);
         bt30 = findViewById(R.id.button30);
         bt50 = findViewById(R.id.button50);
+
+
 
     }
 }

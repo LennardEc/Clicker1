@@ -15,6 +15,8 @@ public class menueActivity extends AppCompatActivity {
     public static final String PAYMENT = "PAYMENT";
     public static final String PAYPALLINK = "PAYPALLINK";
     public static final String PAYPAL = "PAYPAL";
+    public static final String AMAZON = "AMAZON";
+    public static final String GOOGLE = "GOOGLE";
 
     private Button button;
     private Button signOut;
@@ -67,6 +69,16 @@ public class menueActivity extends AppCompatActivity {
         Button amazon = findViewById(R.id.amazon);
         Button googlePlay = findViewById(R.id.googlePlay);
         Button paypal = findViewById(R.id.paypal);
+
+        amazon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(menueActivity.this, PayOutActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                intent.putExtra(PAYMENT, AMAZON);
+                startActivity(intent);
+            }
+        });
 
 
     }
