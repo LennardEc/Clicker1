@@ -38,51 +38,51 @@
         android:layout_marginStart="122dp"
         android:layout_marginEnd="122dp"
         android:layout_marginBottom="257dp"
-        android:text="TextView"
+        android:text="Auszahlung"
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/amazon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginTop="51dp"
         android:layout_marginEnd="157dp"
-        android:text="Button"
+        android:text="Amazon"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintHorizontal_bias="0.0"
         ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintTop_toBottomOf="@+id/auszahlung" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/googlePlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="157dp"
         android:layout_marginBottom="24dp"
-        android:text="Button"
-        ads:layout_constraintBottom_toTopOf="@+id/button5"
+        android:text="Google Play"
+        ads:layout_constraintBottom_toTopOf="@+id/paypal"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toBottomOf="@+id/button3" />
+        ads:layout_constraintTop_toBottomOf="@+id/amazon" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/paypal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="152dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="153dp"
         android:layout_marginBottom="46dp"
-        android:text="Button"
+        android:text="PayPal"
         ads:layout_constraintBottom_toBottomOf="parent"
         ads:layout_constraintEnd_toEndOf="parent"
         ads:layout_constraintStart_toStartOf="parent"
-        ads:layout_constraintTop_toBottomOf="@+id/button4" />
+        ads:layout_constraintTop_toBottomOf="@+id/googlePlay" />
 
     <Button
         android:id="@+id/signOutButton"
