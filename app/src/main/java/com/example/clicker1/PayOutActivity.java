@@ -50,13 +50,13 @@ public class PayOutActivity extends AppCompatActivity {
                 bt.setBackgroundColor(Color.GREEN);
             }
         }else if(clicks >= 30000 && clicks < 50000) {
-            for(int i = 0; i < btArr.length - 1; i++) {
+            for (int i = 0; i < btArr.length - 1; i++) {
                 Button bt = btArr[i];
                 bt.setEnabled(true);
                 bt.setBackgroundColor(Color.GREEN);
+            }
+
         }
-
-
 
     }
 }
