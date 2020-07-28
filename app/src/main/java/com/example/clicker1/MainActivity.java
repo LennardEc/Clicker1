@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (account != null) {
             if(HelperFunctions.userExists(account.getEmail(), this)) {
+                Toast.makeText(this, "onStart", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, AdActivity.class);
                 intent.putExtra(EMAIL, account.getEmail());
                 startActivity(intent);
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Signed in successfully, show authenticated UI.
             if(HelperFunctions.userExists(account.getEmail(), this)) {
+                Toast.makeText(this, "result", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, AdActivity.class);
                 intent.putExtra(EMAIL, account.getEmail());
                 startActivity(intent);
@@ -122,6 +125,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        signOut();//start your method from here
+
+        Intent intent = getIntent();
+        boolean flag = intent.getBooleanExtra("so", false);
+
+        if(flag) {
+            signOut();//start your method from here
+        }
     }
 }

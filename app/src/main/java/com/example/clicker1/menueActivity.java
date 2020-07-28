@@ -55,6 +55,7 @@ public class menueActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(menueActivity.this, MainActivity.class);
+                intent.putExtra("so", false);
                 startActivity(intent);
             }
         });
