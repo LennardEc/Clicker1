@@ -54,8 +54,7 @@ public class menueActivity extends AppCompatActivity {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(menueActivity.this, MainActivity.class);
-                intent.putExtra("so", false);
+                Intent intent = new Intent(menueActivity.this, SignOutActivity.class);
                 startActivity(intent);
             }
         });

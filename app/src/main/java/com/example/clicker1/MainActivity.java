@@ -127,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         Intent intent = getIntent();
-        boolean flag = intent.getBooleanExtra("so", false);
+        boolean flag = intent.getBooleanExtra("Flag", false);
 
         if(flag) {
-            signOut();//start your method from here
+            signOut();
         }
     }
 }
