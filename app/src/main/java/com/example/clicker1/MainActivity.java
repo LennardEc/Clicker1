@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -64,9 +63,15 @@ public class MainActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
         if (account != null) {
-            if(HelperFunctions.userExists(account.getEmail(), this)) {
-                Toast.makeText(this, "onStart", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, AdActivity.class);
+            String email = account.getEmail();
+            if (HelperFunctions.getAGBStatus(email, this) == AGB_VERSION) {
+                if (HelperFunctions.userExists(account.getEmail(), this)) {
+                    Intent intent = new Intent(MainActivity.this, AdActivity.class);
+                    intent.putExtra(EMAIL, account.getEmail());
+                    startActivity(intent);
+                }
+            }else {
+                Intent intent = new Intent(MainActivity.this, AgbActivity.class);
                 intent.putExtra(EMAIL, account.getEmail());
                 startActivity(intent);
             }
@@ -94,16 +99,22 @@ public class MainActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
+            String email = account.getEmail();
             // Signed in successfully, show authenticated UI.
             if(HelperFunctions.userExists(account.getEmail(), this)) {
-                Toast.makeText(this, "result", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, AdActivity.class);
-                intent.putExtra(EMAIL, account.getEmail());
-                startActivity(intent);
+                if(HelperFunctions.getAGBStatus(email, this) == AGB_VERSION) {
+                    Intent intent = new Intent(MainActivity.this, AdActivity.class);
+                    intent.putExtra(EMAIL, email);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, AgbActivity.class);
+                    intent.putExtra(EMAIL, email);
+                    startActivity(intent);
+                }
+
             }else{
                 Intent intent = new Intent(MainActivity.this, AgbActivity.class);
-                intent.putExtra(EMAIL, account.getEmail());
+                intent.putExtra(EMAIL, email);
                 startActivity(intent);
             }
         } catch (ApiException e) {
