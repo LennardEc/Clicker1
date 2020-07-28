@@ -39,6 +39,24 @@ public class PayOutActivity extends AppCompatActivity {
         bt50 = findViewById(R.id.button50);
 
 
+        Button[] btArr = {bt10, bt15, bt20, bt30, bt50};
+
+        //TODO All Buttons red by default
+
+        if(clicks >= 50000) {
+            for(int i = 0; i < btArr.length; i++) {
+                Button bt = btArr[i];
+                bt.setEnabled(true);
+                bt.setBackgroundColor(Color.GREEN);
+            }
+        }else if(clicks >= 30000 && clicks < 50000) {
+            for(int i = 0; i < btArr.length - 1; i++) {
+                Button bt = btArr[i];
+                bt.setEnabled(true);
+                bt.setBackgroundColor(Color.GREEN);
+        }
+
+
 
     }
 }
