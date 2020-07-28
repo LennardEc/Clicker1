@@ -17,11 +17,18 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     SignInButton signin;
 
     public static final String EMAIL = "EMAIL";
+    public static final int AGB_VERSION = 1;
+
+    public static final String agb = "Kein Geld für dich!";
 
     int RC_SIGN_IN = 0;
 

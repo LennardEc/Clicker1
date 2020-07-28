@@ -16,7 +16,8 @@ public class ViewCountHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String create = "CREATE TABLE " + ViewCount.TABLE_NAME + " (" + ViewCount.COLUMN_NAME_EMAIL
                 + " TEXT PRIMARY KEY, " + ViewCount.COLUMN_NAME_CLICKS + " INTEGER, "
-                + ViewCount.COLUMN_NAME_VIEWS + " INTEGER)";
+                + ViewCount.COLUMN_NAME_VIEWS + " INTEGER, "
+                + ViewCount.COLUMN_NAME_AGB_VERSION + " INTEGER)";
 
         db.execSQL(create);
     }
