@@ -25,7 +25,7 @@ public class PayOutActivity extends AppCompatActivity {
         email = intent.getStringExtra(MainActivity.EMAIL);
         paymentMethod = intent.getStringExtra(menueActivity.PAYMENT);
 
-        if(paymentMethod.equals(menueActivity.PAYPAL)) {
+        if (paymentMethod.equals(menueActivity.PAYPAL)) {
             payPalLink = intent.getStringExtra(menueActivity.PAYPALLINK);
         }
 
@@ -47,16 +47,15 @@ public class PayOutActivity extends AppCompatActivity {
         hash.put(30000, bt30);
         hash.put(50000, bt50);
 
-        for(int key : hash.keySet()) {
+        for (int key : hash.keySet()) {
             Button bt = hash.get(key);
-            if(key <= clicks) {
+            if (key <= clicks) {
                 bt.setEnabled(true);
                 bt.setBackgroundColor(Color.GREEN);
-            }else {
+            } else {
                 bt.setEnabled(false);
                 bt.setBackgroundColor(Color.RED);
             }
         }
-
     }
 }
