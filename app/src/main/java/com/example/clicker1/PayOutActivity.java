@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
+
 public class PayOutActivity extends AppCompatActivity {
     String paymentMethod;
     String email;
@@ -38,24 +40,22 @@ public class PayOutActivity extends AppCompatActivity {
         bt30 = findViewById(R.id.button30);
         bt50 = findViewById(R.id.button50);
 
+        HashMap<Integer, Button> hash = new HashMap<>();
+        hash.put(10000, bt10);
+        hash.put(15000, bt15);
+        hash.put(20000, bt20);
+        hash.put(30000, bt30);
+        hash.put(50000, bt50);
 
-        Button[] btArr = {bt10, bt15, bt20, bt30, bt50};
-
-        //TODO All Buttons red by default
-
-        if(clicks >= 50000) {
-            for(int i = 0; i < btArr.length; i++) {
-                Button bt = btArr[i];
+        for(int key : hash.keySet()) {
+            Button bt = hash.get(key);
+            if(key <= clicks) {
                 bt.setEnabled(true);
                 bt.setBackgroundColor(Color.GREEN);
+            }else {
+                bt.setEnabled(false);
+                bt.setBackgroundColor(Color.RED);
             }
-        }else if(clicks >= 30000 && clicks < 50000) {
-            for (int i = 0; i < btArr.length - 1; i++) {
-                Button bt = btArr[i];
-                bt.setEnabled(true);
-                bt.setBackgroundColor(Color.GREEN);
-            }
-
         }
 
     }
