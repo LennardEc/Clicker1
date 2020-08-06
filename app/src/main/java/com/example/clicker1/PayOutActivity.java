@@ -3,7 +3,9 @@ package com.example.clicker1;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,7 +32,7 @@ public class PayOutActivity extends AppCompatActivity {
         }
 
         int[] result = HelperFunctions.loadUserValues(email, this);
-        clicks = result[0];
+        clicks = 10000; //result[0];
 
         //SELECT Amount
         Button bt10, bt15, bt20, bt30, bt50;
@@ -40,7 +42,7 @@ public class PayOutActivity extends AppCompatActivity {
         bt30 = findViewById(R.id.button30);
         bt50 = findViewById(R.id.button50);
 
-        HashMap<Integer, Button> hash = new HashMap<>();
+        final HashMap<Integer, Button> hash = new HashMap<>();
         hash.put(10000, bt10);
         hash.put(15000, bt15);
         hash.put(20000, bt20);
@@ -57,5 +59,14 @@ public class PayOutActivity extends AppCompatActivity {
                 bt.setBackgroundColor(Color.RED);
             }
         }
+
+        bt10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PayOutHelper payOutHelper = new PayOutHelper();
+                payOutHelper.sendEmail(PayOutActivity.this, paymentMethod, email, 10000, "");
+                Toast.makeText(PayOutActivity.this, "Request send!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

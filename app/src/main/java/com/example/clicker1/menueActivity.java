@@ -69,6 +69,7 @@ public class menueActivity extends AppCompatActivity {
         Button amazon = findViewById(R.id.amazon);
         Button googlePlay = findViewById(R.id.googlePlay);
         Button paypal = findViewById(R.id.paypal);
+        //TODO Fortnite
 
         amazon.setOnClickListener(new View.OnClickListener() {
             @Override
