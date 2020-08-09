@@ -63,9 +63,11 @@ public class PayOutActivity extends AppCompatActivity {
         bt10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PayOutHelper payOutHelper = new PayOutHelper();
-                payOutHelper.sendEmail(PayOutActivity.this, paymentMethod, email, 10000, "");
+                JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 10000, "");
+                jea.execute();
                 Toast.makeText(PayOutActivity.this, "Request send!", Toast.LENGTH_SHORT).show();
+
+
             }
         });
     }
