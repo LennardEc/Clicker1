@@ -38,6 +38,15 @@ public class HelperFunctions {
         db.execSQL(update);
     }
 
+    public static void updateClicks(String email, Context context, int clicks) {
+        ViewCountHelper dbHelper = new ViewCountHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        String update = "Update " + ViewCountContract.ViewCount.TABLE_NAME + " set " + ViewCountContract.ViewCount.COLUMN_NAME_CLICKS + " = " + clicks +
+                " where email = '" + email + "'";
+        db.execSQL(update);
+    }
+
 
     public static int[] loadUserValues(String email, Context context) {
         int[] result = new int[2];
