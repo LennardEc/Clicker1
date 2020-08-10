@@ -1,6 +1,5 @@
 package com.example.clicker1;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 
