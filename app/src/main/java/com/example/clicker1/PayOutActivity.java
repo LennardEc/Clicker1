@@ -53,7 +53,16 @@ public class PayOutActivity extends AppCompatActivity {
         hash.put(30000, bt30);
         hash.put(50000, bt50);
 
-        refreshButtons(hash);
+        for (int key : hash.keySet()) {
+            Button bt = hash.get(key);
+            if (key <= clicks) {
+                bt.setEnabled(true);
+                bt.setBackgroundColor(Color.GREEN);
+            } else {
+                bt.setEnabled(false);
+                bt.setBackgroundColor(Color.RED);
+            }
+        }
 
         bt10.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,19 +183,6 @@ public class PayOutActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    private void refreshButtons(HashMap<Integer, Button> hash) {
-        for (int key : hash.keySet()) {
-            Button bt = hash.get(key);
-            if (key <= clicks) {
-                bt.setEnabled(true);
-                bt.setBackgroundColor(Color.GREEN);
-            } else {
-                bt.setEnabled(false);
-                bt.setBackgroundColor(Color.RED);
-            }
-        }
     }
 
 }
