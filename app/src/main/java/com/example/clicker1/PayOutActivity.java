@@ -32,6 +32,7 @@ public class PayOutActivity extends AppCompatActivity {
 
         if (paymentMethod.equals(menueActivity.PAYPAL)) {
             payPalLink = intent.getStringExtra(menueActivity.PAYPALLINK);
+            additionalInfo = payPalLink;
         }
 
         //TODO entfernen des Hardcode Values

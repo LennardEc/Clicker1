@@ -14,32 +14,30 @@
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="100dp"
-        android:text="Sign Out?"
+        android:text="Enter Paypal-Link"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"></TextView>
 
-    <Button
-        android:id="@+id/yesButton"
-        android:layout_width="150dp"
+
+    <EditText
+        android:id="@+id/paypallink"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:background="@android:color/holo_green_dark"
-        android:textColor="@android:color/black"
-        android:text="Yes" />
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="PayPal_Link" />
 
     <Button
-        android:id="@+id/continue"
+        android:id="@+id/continueBt"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
 
-        android:background="@android:color/holo_red_dark"
-        android:textColor="@android:color/black"
 
-        android:text="No" />
+        android:text="Continue" />
 
 
 </LinearLayout>
