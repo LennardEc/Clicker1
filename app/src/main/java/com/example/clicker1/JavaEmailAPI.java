@@ -23,7 +23,8 @@ public class JavaEmailAPI extends AsyncTask<Void, Void, Void> {
     public JavaEmailAPI(Context context, String userEmail, String payMethod, int amount, String additionalInformation) {
         this.context = context;
         this.subject = "Payout Request from " + userEmail;
-        this.message = "Via: " + payMethod + "\n" +
+        this.message = "From:  " + userEmail + "\n" +
+                       "Via: " + payMethod + "\n" +
                        "Amount: " + ""+amount + "\n" +
                        "Additional Information: " + additionalInformation;;
     }

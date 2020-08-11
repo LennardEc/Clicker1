@@ -30,7 +30,9 @@ public class PayPalLinkActivity extends AppCompatActivity {
         continue_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!paypalLink.getText().toString().equals("")) {
+                paypalLinkValue = paypalLink.getText().toString();
+
+                if (!paypalLinkValue.equals("")) {
                     Intent intent = new Intent(PayPalLinkActivity.this, PayOutActivity.class);
                     intent.putExtra(MainActivity.EMAIL, email);
                     intent.putExtra(menueActivity.PAYMENT, payment);

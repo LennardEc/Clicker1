@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     SignInButton signin;
 
     public static final String EMAIL = "EMAIL";
-    public static final int AGB_VERSION = 2;
+    public static final int AGB_VERSION = 1;
 
     public static final String agb = "Kein Geld für dich!";
 
