@@ -15,6 +15,7 @@ public class PayOutActivity extends AppCompatActivity {
     String paymentMethod;
     String email;
     String payPalLink;
+    String additionalInfo = "";
 
     HashMap<Integer, Button> hash;
 
@@ -32,8 +33,6 @@ public class PayOutActivity extends AppCompatActivity {
         if (paymentMethod.equals(menueActivity.PAYPAL)) {
             payPalLink = intent.getStringExtra(menueActivity.PAYPALLINK);
         }
-
-        HelperFunctions.updateClicks(email, this, 15000);
 
         //TODO entfernen des Hardcode Values
         int[] result = HelperFunctions.loadUserValues(email, this);
@@ -64,7 +63,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 10000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 10000, "");
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 10000, additionalInfo);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 10000);
@@ -74,7 +73,105 @@ public class PayOutActivity extends AppCompatActivity {
                     Toast.makeText(PayOutActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
 
-                refreshButtons(hash);
+                Intent intent = new Intent(PayOutActivity.this, menueActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                startActivity(intent);
+            }
+        });
+
+        bt15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Security Call
+                int[] result = HelperFunctions.loadUserValues(email, PayOutActivity.this);
+                clicks = result[0];
+
+                if(clicks >= 15000) {
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 15000, additionalInfo);
+                    jea.execute();
+
+                    HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 15000);
+
+                    Toast.makeText(PayOutActivity.this, "Request send!", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(PayOutActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+
+                Intent intent = new Intent(PayOutActivity.this, menueActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                startActivity(intent);
+            }
+        });
+
+        bt20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Security Call
+                int[] result = HelperFunctions.loadUserValues(email, PayOutActivity.this);
+                clicks = result[0];
+
+                if(clicks >= 20000) {
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 20000, additionalInfo);
+                    jea.execute();
+
+                    HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 20000);
+
+                    Toast.makeText(PayOutActivity.this, "Request send!", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(PayOutActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+
+                Intent intent = new Intent(PayOutActivity.this, menueActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                startActivity(intent);
+            }
+        });
+
+        bt30.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Security Call
+                int[] result = HelperFunctions.loadUserValues(email, PayOutActivity.this);
+                clicks = result[0];
+
+                if(clicks >= 30000) {
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 30000, additionalInfo);
+                    jea.execute();
+
+                    HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 30000);
+
+                    Toast.makeText(PayOutActivity.this, "Request send!", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(PayOutActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+
+                Intent intent = new Intent(PayOutActivity.this, menueActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                startActivity(intent);
+            }
+        });
+
+        bt20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Security Call
+                int[] result = HelperFunctions.loadUserValues(email, PayOutActivity.this);
+                clicks = result[0];
+
+                if(clicks >= 50000) {
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 50000, additionalInfo);
+                    jea.execute();
+
+                    HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 50000);
+
+                    Toast.makeText(PayOutActivity.this, "Request send!", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(PayOutActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }
+
+                Intent intent = new Intent(PayOutActivity.this, menueActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                startActivity(intent);
             }
         });
     }
