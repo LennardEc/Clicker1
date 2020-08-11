@@ -9,7 +9,7 @@
     android:layout_gravity="center">
 
     <TextView
-        android:id="@+id/LogOutTextView"
+        android:id="@+id/paypalTextView"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
@@ -27,17 +27,14 @@
         android:layout_gravity="center_horizontal"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="PayPal_Link" />
+        android:text="" />
 
     <Button
-        android:id="@+id/continueBt"
+        android:id="@+id/continueButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-
-
-        android:text="Continue" />
-
+        android:text="Continue here" />
 
 </LinearLayout>

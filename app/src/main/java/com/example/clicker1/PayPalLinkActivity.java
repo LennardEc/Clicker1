@@ -21,7 +21,7 @@ public class PayPalLinkActivity extends AppCompatActivity {
         setContentView(R.layout.paypal_popop);
 
         final TextView paypalLink = findViewById(R.id.paypallink);
-        Button continue_ = findViewById(R.id.continueBt);
+        Button continue_ = findViewById(R.id.continueButton);
 
         Intent intent = getIntent();
         email = intent.getStringExtra(MainActivity.EMAIL);

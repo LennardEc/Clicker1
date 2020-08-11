@@ -105,6 +105,16 @@ public class menueActivity extends AppCompatActivity {
             }
         });
 
+        paypal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(menueActivity.this, PayPalLinkActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                intent.putExtra(PAYMENT, PAYPAL);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }
