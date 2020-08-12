@@ -12,6 +12,8 @@ public class HelperFunctions {
         String checkUserName = "Select * from " + ViewCountContract.ViewCount.TABLE_NAME + " where email = '" + email + "'";
         Cursor res = db.rawQuery(checkUserName, null);
 
+        db.close();
+
         if(res.getCount() == 1) {
             return true;
         }
@@ -26,6 +28,7 @@ public class HelperFunctions {
 
         String newUser = "Insert into " + ViewCountContract.ViewCount.TABLE_NAME + " values('" + email + "', 0, 0, " + agb_Version + ")";
         db.execSQL(newUser);
+        db.close();
     }
 
 
@@ -36,6 +39,7 @@ public class HelperFunctions {
         String update = "Update " + ViewCountContract.ViewCount.TABLE_NAME + " set " + ViewCountContract.ViewCount.COLUMN_NAME_CLICKS + " = " + clicks +
                 " , " + ViewCountContract.ViewCount.COLUMN_NAME_VIEWS + " = " + views + " where email = '" + email + "'";
         db.execSQL(update);
+        db.close();
     }
 
     public static void updateClicks(String email, Context context, int clicks) {
@@ -45,6 +49,7 @@ public class HelperFunctions {
         String update = "Update " + ViewCountContract.ViewCount.TABLE_NAME + " set " + ViewCountContract.ViewCount.COLUMN_NAME_CLICKS + " = " + clicks +
                 " where email = '" + email + "'";
         db.execSQL(update);
+        db.close();
     }
 
 
@@ -55,6 +60,8 @@ public class HelperFunctions {
 
         String checkUserName = "Select * from " + ViewCountContract.ViewCount.TABLE_NAME + " where email = '" + email + "'";
         Cursor res = db.rawQuery(checkUserName, null);
+
+        db.close();
 
         int cClicks = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_CLICKS);
         int cViews = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_VIEWS);
@@ -80,6 +87,8 @@ public class HelperFunctions {
 
         for(res.moveToFirst(); !res.isAfterLast(); res.moveToNext()) erg = res.getInt(cAGB);
 
+        db.close();
+
         return erg;
     }
 
@@ -90,5 +99,6 @@ public class HelperFunctions {
 
         String update = "Update " + ViewCountContract.ViewCount.TABLE_NAME + " set " + ViewCountContract.ViewCount.COLUMN_NAME_AGB_VERSION + " = " + statusCode + " where email = '" + email + "'";
         db.execSQL(update);
+        db.close();
     }
 }
