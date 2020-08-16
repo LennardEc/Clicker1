@@ -70,7 +70,6 @@ public class menueActivity extends AppCompatActivity {
         Button amazon = findViewById(R.id.amazon);
         Button googlePlay = findViewById(R.id.googlePlay);
         Button paypal = findViewById(R.id.paypal);
-        Button fortnite = findViewById(R.id.fortniteButton);
 
         //TODO get Paypal link and Fortnite code
 
@@ -90,17 +89,6 @@ public class menueActivity extends AppCompatActivity {
                 Intent intent = new Intent(menueActivity.this, PayOutActivity.class);
                 intent.putExtra(MainActivity.EMAIL, email);
                 intent.putExtra(PAYMENT, GOOGLE);
-                startActivity(intent);
-            }
-        });
-
-
-        fortnite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(menueActivity.this, PayOutActivity.class);
-                intent.putExtra(MainActivity.EMAIL, email);
-                intent.putExtra(PAYMENT, FORTNITE);
                 startActivity(intent);
             }
         });
