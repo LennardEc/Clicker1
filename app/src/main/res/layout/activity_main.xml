@@ -4,18 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/login_screen">
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="218dp"
-        android:layout_height="127dp"
+
+    <Button
+        android:id="@+id/signinBt"
+        android:layout_width="249dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="348dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="349dp"
+
+        android:background="?android:attr/selectableItemBackground"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.09"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
