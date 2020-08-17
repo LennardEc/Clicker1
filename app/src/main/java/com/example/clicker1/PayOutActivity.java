@@ -35,6 +35,18 @@ public class PayOutActivity extends AppCompatActivity {
             additionalInfo = payPalLink;
         }
 
+        Button btBack = findViewById(R.id.backToMenuePayout);
+        btBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PayOutActivity.this, menueActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                startActivity(intent);
+            }
+        });
+
+
+
         //TODO entfernen des Hardcode Values
         int[] result = HelperFunctions.loadUserValues(email, this);
         clicks = result[0];
@@ -55,14 +67,28 @@ public class PayOutActivity extends AppCompatActivity {
         hash.put(30000, bt30);
         hash.put(50000, bt50);
 
+        HashMap<Integer, Integer> hashGreen = new HashMap<>();
+        hashGreen.put(10000, R.drawable.ic_eur_button_green_10);
+        hashGreen.put(15000, R.drawable.ic_eur_button_green_15);
+        hashGreen.put(20000, R.drawable.ic_eur_button_green_20);
+        hashGreen.put(30000, R.drawable.ic_eur_button_green_30);
+        hashGreen.put(50000, R.drawable.ic_eur_button_green_50);
+
+        HashMap<Integer, Integer> hashRed = new HashMap<>();
+        hashRed.put(10000, R.drawable.ic_eur_button_red_10);
+        hashRed.put(15000, R.drawable.ic_eur_button_red_15);
+        hashRed.put(20000, R.drawable.ic_eur_button_red_20);
+        hashRed.put(30000, R.drawable.ic_eur_button_red_30);
+        hashRed.put(50000, R.drawable.ic_eur_button_red_50);
+
         for (int key : hash.keySet()) {
             Button bt = hash.get(key);
             if (key <= clicks) {
                 bt.setEnabled(true);
-                bt.setBackgroundColor(Color.GREEN);
+                bt.setBackgroundResource(hashGreen.get(key));
             } else {
                 bt.setEnabled(false);
-                bt.setBackgroundColor(Color.RED);
+                bt.setBackgroundResource(hashRed.get(key));
             }
         }
 
