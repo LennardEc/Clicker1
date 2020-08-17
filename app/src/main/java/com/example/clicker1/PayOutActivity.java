@@ -19,7 +19,7 @@ public class PayOutActivity extends AppCompatActivity {
 
     HashMap<Integer, Button> hash;
 
-    private int clicks;
+    private int clicks, views;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class PayOutActivity extends AppCompatActivity {
         //TODO entfernen des Hardcode Values
         int[] result = HelperFunctions.loadUserValues(email, this);
         clicks = result[0];
+        views = result[1];
 
         //SELECT Amount
         Button bt10, bt15, bt20, bt30, bt50;
@@ -73,7 +74,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 10000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 10000, additionalInfo);
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 10000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 10000);
@@ -97,7 +98,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 15000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 15000, additionalInfo);
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 15000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 15000);
@@ -121,7 +122,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 20000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 20000, additionalInfo);
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 20000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 20000);
@@ -145,7 +146,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 30000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 30000, additionalInfo);
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 30000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 30000);
@@ -161,7 +162,7 @@ public class PayOutActivity extends AppCompatActivity {
             }
         });
 
-        bt20.setOnClickListener(new View.OnClickListener() {
+        bt50.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Security Call
@@ -169,7 +170,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 50000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 50000, additionalInfo);
+                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 50000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 50000);

@@ -20,12 +20,13 @@ public class JavaEmailAPI extends AsyncTask<Void, Void, Void> {
     private Session session;
     private String subject, message;
 
-    public JavaEmailAPI(Context context, String userEmail, String payMethod, int amount, String additionalInformation) {
+    public JavaEmailAPI(Context context, String userEmail, String payMethod, int amount, String additionalInformation, int views) {
         this.context = context;
         this.subject = "Payout Request from " + userEmail;
         this.message = "From:  " + userEmail + "\n" +
                        "Via: " + payMethod + "\n" +
                        "Amount: " + ""+amount + "\n" +
+                       "Views: " + ""+views + "\n" +
                        "Additional Information: " + additionalInformation;;
     }
 
