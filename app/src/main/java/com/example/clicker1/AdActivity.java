@@ -38,9 +38,6 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
         Intent intent = getIntent();
         email = intent.getStringExtra(MainActivity.EMAIL);
 
-        //TODO Entfernen
-        HelperFunctions.updateClicks(email, this, 15000);
-
         //Return an array with the size 2 including clicks at index 0 and views at index 1
         int[] result = HelperFunctions.loadUserValues(email, this);
         clicks = result[0];
