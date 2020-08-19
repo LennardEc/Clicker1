@@ -43,8 +43,8 @@ public class SignOutActivity extends AppCompatActivity {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignOutActivity.this, MainActivity.class);
-                intent.putExtra("Flag", false);
+                Intent intent = new Intent(SignOutActivity.this, menueActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
                 startActivity(intent);
             }
         });

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -20,7 +21,6 @@ import com.google.android.gms.tasks.Task;
 
 public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
-    //SignInButton signin;
     Button signin;
 
     public static final String EMAIL = "EMAIL";
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //signin = findViewById(R.id.sign_in_button);
         signin = findViewById(R.id.signinBt);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,10 +140,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         Intent intent = getIntent();
-        boolean flag = intent.getBooleanExtra("Flag", false);
+        boolean flag = intent.getBooleanExtra("Flag", true);
 
         if(flag) {
             signOut();
+            Toast.makeText(this, "Logged out", Toast.LENGTH_LONG).show();
         }
     }
 }
