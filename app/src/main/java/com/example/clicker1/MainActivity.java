@@ -14,7 +14,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -64,18 +63,24 @@ public class MainActivity extends AppCompatActivity {
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
-        if (account != null) {
-            String email = account.getEmail();
-            if (HelperFunctions.getAGBStatus(email, this) == AGB_VERSION) {
-                if (HelperFunctions.userExists(account.getEmail(), this)) {
-                    Intent intent = new Intent(MainActivity.this, AdActivity.class);
+        Intent log_intent = getIntent();
+        boolean flag = log_intent.getBooleanExtra("Flag", false);
+
+        if(!flag) {
+            if (account != null) {
+                String email = account.getEmail();
+                if (HelperFunctions.getAGBStatus(email, this) == AGB_VERSION) {
+                    if (HelperFunctions.userExists(account.getEmail(), this)) {
+                        Intent intent = new Intent(MainActivity.this, AdActivity.class);
+                        intent.putExtra(EMAIL, account.getEmail());
+                        startActivity(intent);
+                    }
+                }else {
+                    Intent intent = new Intent(MainActivity.this, AgbActivity.class);
                     intent.putExtra(EMAIL, account.getEmail());
                     startActivity(intent);
                 }
-            }else {
-                Intent intent = new Intent(MainActivity.this, AgbActivity.class);
-                intent.putExtra(EMAIL, account.getEmail());
-                startActivity(intent);
+
             }
         }
     }
@@ -140,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         Intent intent = getIntent();
-        boolean flag = intent.getBooleanExtra("Flag", true);
+        boolean flag = intent.getBooleanExtra("Flag", false);
 
         if(flag) {
             signOut();

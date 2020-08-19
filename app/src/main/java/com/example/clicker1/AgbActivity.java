@@ -29,8 +29,17 @@ public class AgbActivity extends AppCompatActivity {
 
         TextView agb_text = findViewById(R.id.agb_textView);
         agb_text.setMovementMethod(new ScrollingMovementMethod());
+        agb_text.setText(MainActivity.agb);
 
         agb_check = findViewById(R.id.agb_checkbox);
+
+        Button decline = findViewById(R.id.decline);
+        decline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         Button proceed = findViewById(R.id.porceed);
 
