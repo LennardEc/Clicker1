@@ -1,5 +1,6 @@
 package com.example.clicker1;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +11,7 @@ public class HelperFunctions {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String checkUserName = "Select * from " + ViewCountContract.ViewCount.TABLE_NAME + " where email = '" + email + "'";
-        Cursor res = db.rawQuery(checkUserName, null);
+        @SuppressLint("Recycle") Cursor res = db.rawQuery(checkUserName, null);
 
         return res.getCount() == 1;
     }
@@ -50,7 +51,7 @@ public class HelperFunctions {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String checkUserName = "Select * from " + ViewCountContract.ViewCount.TABLE_NAME + " where email = '" + email + "'";
-        Cursor res = db.rawQuery(checkUserName, null);
+        @SuppressLint("Recycle") Cursor res = db.rawQuery(checkUserName, null);
 
         int cClicks = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_CLICKS);
         int cViews = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_VIEWS);
@@ -69,7 +70,7 @@ public class HelperFunctions {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String getVersion = "Select " + ViewCountContract.ViewCount.COLUMN_NAME_AGB_VERSION + " from " + ViewCountContract.ViewCount.TABLE_NAME + " where email = '" + email + "'";
-        Cursor res = db.rawQuery(getVersion, null);
+        @SuppressLint("Recycle") Cursor res = db.rawQuery(getVersion, null);
 
         int cAGB = res.getColumnIndex(ViewCountContract.ViewCount.COLUMN_NAME_AGB_VERSION);
         int erg = 0;

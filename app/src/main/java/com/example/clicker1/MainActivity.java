@@ -38,10 +38,8 @@ public class MainActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (view.getId()) {
-                    case R.id.signinBt:
-                        signIn();
-                        break;
+                if (view.getId() == R.id.signinBt) {
+                    signIn();
                 }
             }
         });
@@ -106,8 +104,11 @@ public class MainActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            String email = account.getEmail();
+            String email = null;
+            if (account != null) email = account.getEmail();
+
             // Signed in successfully, show authenticated UI.
+            assert account != null;
             if(HelperFunctions.userExists(account.getEmail(), this)) {
                 if(HelperFunctions.getAGBStatus(email, this) == AGB_VERSION) {
                     Intent intent = new Intent(MainActivity.this, AdActivity.class);

@@ -1,6 +1,4 @@
 package com.example.clicker1;
-
-import android.content.Context;
 import android.os.AsyncTask;
 
 import java.util.Properties;
@@ -15,19 +13,15 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaEmailAPI extends AsyncTask<Void, Void, Void> {
 
-    private Context context;
-
-    private Session session;
     private String subject, message;
 
-    public JavaEmailAPI(Context context, String userEmail, String payMethod, int amount, String additionalInformation, int views) {
-        this.context = context;
+    public JavaEmailAPI(String userEmail, String payMethod, int amount, String additionalInformation, int views) {
         this.subject = "Payout Request from " + userEmail;
         this.message = "From:  " + userEmail + "\n" +
                        "Via: " + payMethod + "\n" +
                        "Amount: " + ""+amount + "\n" +
                        "Views: " + ""+views + "\n" +
-                       "Additional Information: " + additionalInformation;;
+                       "Additional Information: " + additionalInformation;
     }
 
     @Override
@@ -39,7 +33,7 @@ public class JavaEmailAPI extends AsyncTask<Void, Void, Void> {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.port", "465");
 
-        session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+        Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(Utils.EMAIL_FROM, Utils.PASSWORD_FROM);
             }

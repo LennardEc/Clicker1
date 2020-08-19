@@ -1,5 +1,6 @@
 package com.example.clicker1;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,18 +10,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class menueActivity extends AppCompatActivity {
-    private int clicks;
-    private int views;
 
     public static final String PAYMENT = "PAYMENT";
     public static final String PAYPALLINK = "PAYPALLINK";
     public static final String PAYPAL = "PAYPAL";
     public static final String AMAZON = "AMAZON";
     public static final String GOOGLE = "GOOGLE";
-    public static final String FORTNITE = "FORTNTIE";
 
-    private Button button;
-    private Button signOut;
+    @SuppressLint("StaticFieldLeak")
     public static TextView konto;
 
     public static String email;
@@ -35,12 +32,11 @@ public class menueActivity extends AppCompatActivity {
 
         //Return an array with the size 2 including clicks at index 0 and views at index 1
         int[] result = HelperFunctions.loadUserValues(email, this);
-        clicks = result[0];
-        views = result[1];
+        int clicks = result[0];
 
 
-        button = findViewById(R.id.redirectToAd);
-        signOut = findViewById(R.id.signOutButton);
+        Button button = findViewById(R.id.redirectToAd);
+        Button signOut = findViewById(R.id.signOutButton);
         konto = findViewById(R.id.kontostand);
 
         konto.setText(String.valueOf(clicks));

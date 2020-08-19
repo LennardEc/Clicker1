@@ -1,7 +1,6 @@
 package com.example.clicker1;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +29,7 @@ public class PayOutActivity extends AppCompatActivity {
         email = intent.getStringExtra(MainActivity.EMAIL);
         paymentMethod = intent.getStringExtra(menueActivity.PAYMENT);
 
-        if (paymentMethod.equals(menueActivity.PAYPAL)) {
+        if (paymentMethod != null && paymentMethod.equals(menueActivity.PAYPAL)) {
             payPalLink = intent.getStringExtra(menueActivity.PAYPALLINK);
             additionalInfo = payPalLink;
         }
@@ -46,8 +45,6 @@ public class PayOutActivity extends AppCompatActivity {
         });
 
 
-
-        //TODO entfernen des Hardcode Values
         int[] result = HelperFunctions.loadUserValues(email, this);
         clicks = result[0];
         views = result[1];
@@ -84,11 +81,18 @@ public class PayOutActivity extends AppCompatActivity {
         for (int key : hash.keySet()) {
             Button bt = hash.get(key);
             if (key <= clicks) {
-                bt.setEnabled(true);
-                bt.setBackgroundResource(hashGreen.get(key));
+                if (bt != null) {
+                    bt.setEnabled(true);
+                    //noinspection ConstantConditions
+                    bt.setBackgroundResource(hashGreen.get(key));
+                }
+
             } else {
-                bt.setEnabled(false);
-                bt.setBackgroundResource(hashRed.get(key));
+                if (bt != null) {
+                    bt.setEnabled(false);
+                    //noinspection ConstantConditions
+                    bt.setBackgroundResource(hashRed.get(key));
+                }
             }
         }
 
@@ -100,7 +104,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 10000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 10000, additionalInfo, views);
+                    JavaEmailAPI jea = new JavaEmailAPI(email, paymentMethod, 10000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 10000);
@@ -124,7 +128,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 15000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 15000, additionalInfo, views);
+                    JavaEmailAPI jea = new JavaEmailAPI(email, paymentMethod, 15000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 15000);
@@ -148,7 +152,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 20000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 20000, additionalInfo, views);
+                    JavaEmailAPI jea = new JavaEmailAPI(email, paymentMethod, 20000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 20000);
@@ -172,7 +176,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 30000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 30000, additionalInfo, views);
+                    JavaEmailAPI jea = new JavaEmailAPI(email, paymentMethod, 30000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 30000);
@@ -196,7 +200,7 @@ public class PayOutActivity extends AppCompatActivity {
                 clicks = result[0];
 
                 if(clicks >= 50000) {
-                    JavaEmailAPI jea = new JavaEmailAPI(PayOutActivity.this, email, paymentMethod, 50000, additionalInfo, views);
+                    JavaEmailAPI jea = new JavaEmailAPI(email, paymentMethod, 50000, additionalInfo, views);
                     jea.execute();
 
                     HelperFunctions.updateClicks(email, PayOutActivity.this,clicks - 50000);
