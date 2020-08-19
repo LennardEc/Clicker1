@@ -61,6 +61,7 @@ public class menueActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(menueActivity.this, SignOutActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
                 startActivity(intent);
             }
         });

@@ -3,43 +3,51 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="457dp"
-    android:background="@color/browser_actions_divider_color"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_"
     android:padding="5dp"
     android:layout_gravity="center">
+
+    <Button
+        android:id="@+id/redirectMenue"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="185dp"
+
+        android:background="@drawable/returnlogo"
+        />
 
     <TextView
         android:id="@+id/LogOutTextView"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
-        android:text="Sign Out?"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold"></TextView>
+        android:layout_marginTop="260dp"
+
+        android:background="@drawable/sign_out"></TextView>
+
 
     <Button
         android:id="@+id/yesButton"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:background="@android:color/holo_green_dark"
-        android:textColor="@android:color/black"
-        android:text="Yes" />
+        android:layout_marginTop="60dp"
+        android:background="@drawable/ic_yes"
+        />
 
     <Button
         android:id="@+id/noButton"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="40dp"
 
-        android:background="@android:color/holo_red_dark"
-        android:textColor="@android:color/black"
-
-        android:text="No" />
+        android:background="@drawable/ic_no"
+        />
 
 
 </LinearLayout>
