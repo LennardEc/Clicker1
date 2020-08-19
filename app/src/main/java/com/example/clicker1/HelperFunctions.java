@@ -12,11 +12,7 @@ public class HelperFunctions {
         String checkUserName = "Select * from " + ViewCountContract.ViewCount.TABLE_NAME + " where email = '" + email + "'";
         Cursor res = db.rawQuery(checkUserName, null);
 
-        if(res.getCount() == 1) {
-            return true;
-        }
-
-        return false;
+        return res.getCount() == 1;
     }
 
 
