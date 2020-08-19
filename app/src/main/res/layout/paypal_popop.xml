@@ -19,7 +19,7 @@
 
         android:textAlignment="center"
         android:textSize="30sp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold" />
 
 
     <EditText

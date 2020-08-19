@@ -26,7 +26,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="260dp"
 
-        android:background="@drawable/sign_out"></TextView>
+        android:background="@drawable/sign_out"/>
 
 
     <Button
