@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background_">
 
     <TextView
         android:id="@+id/agb_textView"
@@ -16,12 +17,22 @@
         android:id="@+id/agb_checkbox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        android:text="Ich aktzeptiere die AGB und die Datenschutzerklärung" />
 
     <Button
-        android:id="@+id/porceed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
+    android:id="@+id/porceed"
+    android:layout_width="200dp"
+    android:layout_height="60dp"
+    android:layout_gravity="center"
+        android:background="@drawable/ic_accept"/>
+
+    <Button
+        android:id="@+id/decline"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/ic_decline"/>
 
 </LinearLayout>
