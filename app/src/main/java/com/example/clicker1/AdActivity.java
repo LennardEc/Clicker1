@@ -28,7 +28,7 @@ public class AdActivity extends AppCompatActivity implements RewardedVideoAdList
     private int views;
     private String email;
 
-    private String productionAd = "ca-app-pub-3940256099942544/5224354917";
+    private String productionAd = "ca-app-pub-9673805035685655/4400516143";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
