@@ -102,30 +102,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
+            Toast.makeText(this, "Try to choose the next activity", Toast.LENGTH_LONG).show();
+
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            String email = null;
-            if (account != null) email = account.getEmail();
-            // Signed in successfully, show authenticated UI.
-            assert account != null;
+            String email = account.getEmail();
+
+            boolean testCallDBagb = HelperFunctions.userExists(email, this);
+            Toast.makeText(this, ""+testCallDBagb, Toast.LENGTH_LONG).show();
+
             if(HelperFunctions.userExists(account.getEmail(), this)) {
                 if(HelperFunctions.getAGBStatus(email, this) == AGB_VERSION) {
                     Intent intent = new Intent(MainActivity.this, AdActivity.class);
                     intent.putExtra(EMAIL, email);
 
-                    Toast.makeText(this, "Try to Change activity", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Exists and AGB is newest", Toast.LENGTH_LONG).show();
 
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(MainActivity.this, AgbActivity.class);
                     intent.putExtra(EMAIL, email);
-                    Toast.makeText(this, "Try to Change activity", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Exists but old AGB", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                 }
 
             }else{
                 Intent intent = new Intent(MainActivity.this, AgbActivity.class);
                 intent.putExtra(EMAIL, email);
-                Toast.makeText(this, "Try to Change activity", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Not existing", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         } catch (ApiException e) {
