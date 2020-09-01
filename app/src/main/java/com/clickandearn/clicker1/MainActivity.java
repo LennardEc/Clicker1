@@ -105,31 +105,35 @@ public class MainActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             String email = null;
             if (account != null) email = account.getEmail();
-
             // Signed in successfully, show authenticated UI.
             assert account != null;
             if(HelperFunctions.userExists(account.getEmail(), this)) {
                 if(HelperFunctions.getAGBStatus(email, this) == AGB_VERSION) {
                     Intent intent = new Intent(MainActivity.this, AdActivity.class);
                     intent.putExtra(EMAIL, email);
+
+                    Toast.makeText(this, "Try to Change activity", Toast.LENGTH_LONG).show();
+
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(MainActivity.this, AgbActivity.class);
                     intent.putExtra(EMAIL, email);
+                    Toast.makeText(this, "Try to Change activity", Toast.LENGTH_LONG).show();
                     startActivity(intent);
                 }
 
             }else{
                 Intent intent = new Intent(MainActivity.this, AgbActivity.class);
                 intent.putExtra(EMAIL, email);
+                Toast.makeText(this, "Try to Change activity", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("", "signInResult:failed code=" + e.getStatusCode());
+            Toast.makeText(this, "Failed to change Activity", Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(this, "Failed to change Activity", Toast.LENGTH_LONG);
     }
 
     private void signOut() {

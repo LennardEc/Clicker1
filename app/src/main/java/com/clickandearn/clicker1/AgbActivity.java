@@ -33,11 +33,17 @@ public class AgbActivity extends AppCompatActivity {
 
         agb_check = findViewById(R.id.agb_checkbox);
 
+        Toast.makeText(this, "Entered AGB Activity", Toast.LENGTH_LONG).show();
+
         Button decline = findViewById(R.id.decline);
         decline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(AgbActivity.this, MainActivity.class);
+                intent.putExtra(MainActivity.EMAIL, email);
+                intent.putExtra("Flag", true);
+
+                startActivity(intent);
             }
         });
 
@@ -46,8 +52,7 @@ public class AgbActivity extends AppCompatActivity {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HelperFunctions hf = new HelperFunctions();
-                boolean isUser = hf.userExists(email, AgbActivity.this);
+                boolean isUser = HelperFunctions.userExists(email, AgbActivity.this);
 
                 if(agb_check.isChecked() && !isUser) {
                     HelperFunctions.createUser(email, AgbActivity.this, agb_version);
