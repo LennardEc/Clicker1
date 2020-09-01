@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra(EMAIL, account.getEmail());
                     startActivity(intent);
                 }
-
             }
         }
     }

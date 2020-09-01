@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/agb_textView"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         android:layout_margin="16dp"
         android:scrollbars="vertical" />
 
@@ -33,7 +33,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/ic_decline"/>
 
 </LinearLayout>
