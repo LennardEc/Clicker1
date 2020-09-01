@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("", "signInResult:failed code=" + e.getStatusCode());
         }
+        Toast.makeText(this, "Failed to change Activity", Toast.LENGTH_LONG);
     }
 
     private void signOut() {

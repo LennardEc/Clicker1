@@ -46,7 +46,8 @@ public class AgbActivity extends AppCompatActivity {
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isUser = HelperFunctions.userExists(email, AgbActivity.this);
+                HelperFunctions hf = new HelperFunctions();
+                boolean isUser = hf.userExists(email, AgbActivity.this);
 
                 if(agb_check.isChecked() && !isUser) {
                     HelperFunctions.createUser(email, AgbActivity.this, agb_version);
